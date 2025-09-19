@@ -5,10 +5,10 @@ import MovieCard from './components/MovieCard.jsx';
 
 const API_BASE_URL = 'https://api.themoviedb.org/3';
 
+//import dari local sbb kalau letak sini key users boleh nampak kat inspect
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
-
-
+//authorization ni kalau salah error
 const API_OPTIONS = {
   method: 'GET',
   headers: { 
@@ -30,7 +30,7 @@ const App = () => {
   
   try {
     const endpoint = query
-    //enocodeURIComponent supaya kalau speacial chars tak error
+    //enocodeURIComponent supaya kalau special chars tak error
     ? `${API_BASE_URL}/search/movie?query=${encodeURIComponent(query)}`
     : `${API_BASE_URL}/discover/movie?sort_by=popularity.desc`;
 
