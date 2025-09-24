@@ -42,3 +42,18 @@ export const updateSearchCount = async (searchTerm, movie) =>   {
 
     
 }
+
+export const getTopSearches = async (limit = 5) => {    
+    try {
+        const result = await database.listDocuments(DATABASE_ID, COLLECTION_ID, [
+            // this is an array of queries
+            Query.orderDesc('count'), //higher count first
+            Query.limit(limit) //show only 5 results
+        ]);
+
+        return result.documents;
+    } catch (error) {
+        console.error('Error fetching top searches:', error);
+        return [];
+    }
+};
